@@ -3,6 +3,8 @@
   let scrollY
   $: outerWidth = 0;
 
+  // console.log(scrollY.getAttribute('id'))
+
   const handleMouseEvent = (event) => {
     mouse.x = Math.round(event.clientX / outerWidth * 100)
     mouse.y = Math.round(event.clientY / outerWidth * 100)
@@ -13,7 +15,7 @@
 <svelte:window  bind:outerWidth bind:scrollY={scrollY}/>
 
 <div on:mousemove={handleMouseEvent} style:--degree="{Math.random()*20+scrollY}deg" class="bg-gradient fit-to-screen ">
-  <div>{mouse.x}</div>
+  <!-- <div>{mouse.x}</div> -->
   <slot></slot>
 </div>
 

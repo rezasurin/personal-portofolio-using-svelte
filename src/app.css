@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  
+}
+
+
 .glass-effect {
   background: rgba( 255, 255, 255, 0.3 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -11,4 +17,13 @@
   -webkit-backdrop-filter: blur( 9.5px );
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.animate-show {
+  animation: showAlert 1s infinite;
+}
+
+@keyframe showAlert {
+  from {top: 0px;}
+  to {top: 200px;}
 }

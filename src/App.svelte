@@ -1,18 +1,65 @@
 <script>
-  import logo from './assets/svelte.png'
-  import Counter from './lib/Counter.svelte'
   import Card from './components/Card.svelte'
+  import CardImage from './components/CardImage.svelte';
   import NavBar from './components/Nav.svelte'
-  import myFoto from './assets/images/my-foto-origin.jpg'
-  import Nav from './components/Nav.svelte'
-  import Particle from './components/Particle.svelte';
   import Icon from '@iconify/svelte';
+
+  import myAva from './assets/images/my-avatar.png'
+  import myFoto from './assets/images/my-foto-origin.jpg'
+
+  import portoWeb3 from './assets/images/pro-web3.png'
+  import portoLms from './assets/images/pro-lms.png'
+  import portoGallery from './assets/images/pro-gallery.png'
+  import portoEvent from './assets/images/pro-event.png'
+  import portoFood from './assets/images/pro-food.png'
 
   import Layout from './components/Layout.svelte'
   let mouse = {x: 0, y: 0}
   let scrollY
   $: outerWidth = 0;
 
+  const dataPorto = [
+    {
+      title: 'Web3',
+      src: portoWeb3,
+      link: 'https://reza-web3.netlify.app/',
+      isMobile: false
+    },
+    {
+      title: 'Learning Management System (LMS)',
+      src: portoLms,
+      link: null,
+      isMobile: false
+    },
+    {
+      title: 'Simple Unsplash Gallery',
+      src: portoGallery,
+      link: 'https://unusual-gallery.web.app/',
+      isMobile: false
+    },
+    {
+      title: 'Company Event',
+      src: portoEvent,
+      link: null,
+      isMobile: true
+    },
+    {
+      title: '[UI DESIGN] Food Ordering and Reservation ',
+      src: portoFood,
+      link: null,
+      isMobile: true
+    }
+  ]
+
+  const handleClickImage = (event, data) => {
+    if (data) {
+
+      window.open(data, '_blank')
+    }
+    let alertContent = document.getElementById('alert-content').classList
+    alertContent.replace("hidden","visible")
+    console.log(alertContent)
+  }
  
 </script>
 
@@ -28,43 +75,26 @@
 <NavBar />
 <Layout bind:mouse={mouse}>
 
-  <div class="flex items-center justify-between p-20 rounded-b-3xl" >
-    <!-- <Card>
-        <div>
-          <h2>Login</h2>
-        </div>
-        <div style="display: flex; flex-direction: column;">
-          <form style="display: flex; flex-direction: column; align-items: start;gap: 2;">
-            <div style="display: flex; flex-direction: column; align-items:start;">
-              <label for="username" style="margin: 8px 0;">Username</label>
-              <input name="username" id="username" type="text" />
-            </div>
-            <div style="display: flex; flex-direction: column; align-items:start;">
-              <label for="password" >Password</label>
-              <input name="password" id="password" type="password" />
-            </div>
-  
-          </form>
-        </div>
-    </Card> -->
-  
-    <!-- headline -->
+  <section id="home" class="flex flex-col md:flex-row items-center justify-between py-10 px-16 rounded-b-3xl" >
+    
+    <div class=" block">
+      <img src={myAva} alt="my-photo" class="block w-36 md:w-96 "/>
+    </div>
     <div>
-      <p>{mouse.x+100} ---- {mouse.y} --- {scrollY}</p>
-      <p class="text-6xl font-bold text-white leading-tight">
+      <p class="lg:text-6xl text-xl font-bold text-white leading-tight">
         Hi there!
         <br />
-        <span class="text-6xl font-charis font-semibold tracking-tight font-charis text-white">
+        <span class="md:text-6xl text-4xl font-charis font-semibold tracking-tight font-charis text-white">
           I am Reza Mahendra Surin.
         </span>
       </p>
-      <p class="text-md text-white">
+      <p class="md:text-md text-sm text-white">
         Frontend Developer specializing in React.js, Vue.js, and Next.js.
       </p>
   
-      <div class="fixed left-4 top-80">
+      <div class="fixed left-4 md:top-80 bottom-0">
         <ul>
-          <a class="p-2">
+          <a class="p-2" href="https://linkedin.com/in/rezasurin">
             <Icon icon="feather:linkedin" class="text-white text-2xl" />
           </a>
           <div class="vertical-line " />
@@ -72,26 +102,39 @@
       </div>
       
     </div>
-    <div class=" block">
-      <img src={myFoto} class="block w-80 h-80 rounded-full"/>
-    </div>
-  </div>
+  </section>
   
-  <section id="section-about-me">
-    <div class="flex justify-end mx-20 mb-10">
+  <section id="about-me" class="md:h-screen py- md:px-16 mx-5 md:mx-0">
+    <div class="flex md:flex-row flex-col-reverse justify-between mx-10 mb-10 items-center h-full">
       <Card>
-        <div class="flex flex-col w-4/5">
-          <p class="text-2xl font-bold mx-auto ">About me</p>
+        <div class="flex flex-col w-full md:w-4/5">
+          <p class="text-2xl font-bold mx-auto text-white">About me</p>
           <p class="text-md tracking-wider m-0 mt-2 text-white">
-            Talented Frontend Developer with 1+ years experience, UI/UX enthusiast.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod aut doloremque repudiandae excepturi, minima totam reprehenderit explicabo voluptatem delectus ullam quo voluptatum nisi. Excepturi possimus modi nulla laboriosam in repellendus?
+            A Front-end Developer and also passionate about UI/UX design.
+            An outgoing, curious, creative, and hardworking person. Able and eager to learn new things for better improvement, love to face new challenges, and passionate about what i am doing.
+            <br />
+            
           </p>
+          <p class="text-md tracking-wider m-0 mt-2 text-white">
+            I have a BE in Engineering Physics from <span>
+              <a href="https://telkomuniversity.ac.id" class="text-cyan-400 font-bold">
+                Telkom University
+              </a>, Indonesia and
+            </span> a Certificate of Full Stack Javascript Immersive from <span >
+              <a class="text-cyan-400 font-bold" href="https://hacktiv8.com">Hacktiv8</a>, Indonesia.
+            </span>
+            
+          </p>
+          
         </div>
       </Card>
+      <div class=" block">
+        <img src={myFoto} alt="my-photo" class="block md:w-80 w-36 mb-5 md:mb-0 rounded-full"/>
+      </div>
     </div>
   </section>
   
-  <section id="section-work">
+  <!-- <section id="work" class="h-screen py-16">
     <div class="flex min-h-screen justify-center">
       <div class="flex flex-col w-4/5">
         <p class="text-2xl font-bold mx-auto mt-16">Where I've Worked</p>
@@ -100,19 +143,35 @@
         </p>
       </div>
     </div>
-  </section>
+  </section> -->
   
   
-  <section id="section-project">
-    <div class="flex min-h-screen justify-center">
-      <div class="flex flex-col w-4/5">
-        <p class="text-2xl font-bold mx-auto mt-16">Something I've Built</p>
-        <p class="text-md tracking-wider m-0 mt-2">
-          Talented Frontend Developer with 1+ years experience, UI/UX enthusiast. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod aut doloremque repudiandae excepturi, minima totam reprehenderit explicabo voluptatem delectus ullam quo voluptatum nisi. Excepturi possimus modi nulla laboriosam in repellendus?
+  <section id="portofolio" class="mb-20">
+    <div class="flex flex-col min-h-screen justify-center items-center px-12">
+      <div class="flex flex-col w-11/12 justify-center">
+        <p class="text-2xl font-bold mx-auto">Something I've Built</p>
+        <p class="text-sm tracking-wider mx-auto mt-2">
+          Several projects that I've develop.
         </p>
+      </div>
+      <div class="flex mt-4 flex-wrap justify-center">
+        {#each dataPorto as data }
+        <CardImage title={data.title}>
+          <img src={data.src} alt="my-photo" id="porto-image" on:click|preventDefault={(e) => handleClickImage(e, data.link)} class=" {data.isMobile ? 'w-12 hover:w-32 ' : 'w-40 hover:w-72 '} hover:absolute hover:grayscale-0 hover:animate-none grayscale ease-in-out duration-150 animate-pulse"/>
+        </CardImage>
+        {/each}
+        <!-- <div id="alert-content" class="relative p-12 hidden">
+          <p id="alert-text">Warning text</p>
+        </div> -->
       </div>
     </div>
   </section>
+
+  <footer class="py-4">
+    <div>
+      <p class="text-center font-charis"> © 2022 Reza Surin</p>
+    </div>
+  </footer>
 </Layout>
 
 
