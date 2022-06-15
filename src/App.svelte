@@ -75,7 +75,7 @@
 <NavBar />
 <Layout bind:mouse={mouse}>
 
-  <section id="home" class="flex flex-col md:flex-row items-center justify-between py-10 px-16 rounded-b-3xl" >
+  <section id="home" class="flex flex-col md:flex-row md:h-screen items-center justify-between py-10 px-16 rounded-b-3xl" >
     
     <div class=" block">
       <img src={myAva} alt="my-photo" class="block w-36 md:w-96 "/>

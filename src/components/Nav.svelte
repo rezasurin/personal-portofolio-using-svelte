@@ -4,6 +4,7 @@
   import { onMount, onDestroy } from "svelte";
   import { listIcons } from "@iconify/svelte";
   export let showNavBar = true;
+  // import {page} from '$app/stores'
 
   let menus = [
     {
@@ -27,51 +28,40 @@
       active: false,
     },
   ];
-  let selected = menus[0];
-  let selectedIndex = 0;
-  const sections = document.querySelectorAll("section");
 
   let y;
   $: outerHeight = 0;
+  $: current = ''  ;
 
-  onMount(() => {
+  function checkRoute(sections) {
     window.onscroll = () => {
-      let current = "";
-      // console.log(document.querySelectorAll("nav div ul li a"));
       sections.forEach((section) => {
-        // console.log(current)
+
         const sectionTop = section.offsetTop;
-        if (window.scrollY >= sectionTop - 20) {
-          // console.log(section.getAttribute("id"), sectionTop, window.scrollY)
-          current = section.getAttribute("id")
+        const sectionBottom = sectionTop + section.scrollHeight
+        const viewportTop = window.scrollY
+        const viewportBottom = viewportTop + window.innerHeight
+
+        if (sectionBottom > viewportTop && sectionTop < viewportBottom) {
+          current = section.getAttribute('id')
         }
       });
-      // menus.forEach((menu, idx) => {
-      //       if (menu.id == current ) {
-      //         menu.active = true
-      //       } else {
-      //         console.log(menu.id)
-
-      //         menu.active = false
-      //       }
-      //     })
-      document.querySelectorAll("nav div ul li a").forEach(menu => {
-        menu.classList.remove('font-bold')
-        if (menu.classList.contains(current)) {
-          menu.classList.add("font-bold");
-        } 
-        // console.log(menu.classList.contains(current))
-      })
-
-      if (window.scrollY > y) {
-        showNavBar = true;
-      } else {
-        showNavBar = false;
+          
+          if (window.scrollY > y) {
+            showNavBar = true;
+          } else {
+            showNavBar = false;
+          }
+        };
       }
-    };
-  });
-
-  onDestroy(() => {
+      
+      onMount(() => {
+        
+        const sections = document.querySelectorAll("section");
+        checkRoute(sections)
+      });
+      
+      onDestroy(() => {
     window.onscroll = () => {};
   });
 
@@ -92,9 +82,9 @@
         {#each menus as menu, i}
           <li>
             <a
-              id={i}
+              id="{i}"
               href="#{menu.id}"
-              class="block {menu.id} pl-3 text-lg hover:text-xl hover:font-bold  ease-in-out duration-200  text-white">{menu.page}</a
+              class="block {menu.id} pl-3 text-lg {current == menu.id ? 'font-bold' : ''} hover:text-xl hover:font-bold  ease-in-out duration-200  text-white">{menu.page}</a
             >
           </li>
         {/each}
