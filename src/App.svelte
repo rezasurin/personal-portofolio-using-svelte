@@ -13,10 +13,26 @@
   import portoEvent from './assets/images/pro-event.png'
   import portoFood from './assets/images/pro-food.png'
 
+  import { onMount } from 'svelte';
+  import * as THREE from 'three'
+  import { Canvas } from '@threlte/core'
+  import * as Threlte from '@threlte/core'
+  import * as Extra from '@threlte/extras'
+
+
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+  import * as SC from 'svelte-cubed'
   import Layout from './components/Layout.svelte'
+  import AvatarModel from './components/AvatarModel.svelte';
+
+  let meshAva;
+
+
   let mouse = {x: 0, y: 0}
   let scrollY
   $: outerWidth = 0;
+  let cameraBindXMouse = 0
+  let rotate = {x: 0}
 
   const dataPorto = [
     {
@@ -51,6 +67,8 @@
     }
   ]
 
+
+
   const handleClickImage = (event, data) => {
     if (data) {
 
@@ -60,7 +78,18 @@
     alertContent.replace("hidden","visible")
     console.log(alertContent)
   }
- 
+
+
+  // let camera = new THREE.PerspectiveCamera()
+
+  
+  // if (avatarModel) {
+  //   console.log(avatarModel, "<< CHECK")
+  // }
+
+  const handleMouseEvent = (event) => {
+    cameraBindXMouse = Math.round(event.clientX / outerWidth * 100)
+  }
 </script>
 
 
@@ -75,16 +104,35 @@
 <NavBar />
 <Layout bind:mouse={mouse}>
 
-  <section id="home" class="flex flex-col md:flex-row md:h-screen items-center justify-between py-10 px-16 rounded-b-3xl" >
+  <section id="home" class="flex flex-col md:flex-row md:h-screen items-center justify-between py-10 px-16 rounded-b-3xl" on:mousemove={handleMouseEvent} >
     
-    <div class=" block">
-      <img src={myAva} alt="my-photo" class="block w-36 md:w-96 "/>
+    <div class="block w-[600px] h-[600px] bg-ed-200 z-20">
+
+      <Threlte.Canvas shadows>
+        <Threlte.PerspectiveCamera fov={24}  position={{ x: -2, y: 2, z:8 }} >
+          <Threlte.OrbitControls enableDamping />
+        </Threlte.PerspectiveCamera>
+        <Threlte.AmbientLight color={0xb7cbf4} intensity={1.2} />
+        <Threlte.DirectionalLight color={0xb7cbf4} intensity={1.8} shadow  position={{ x: cameraBindXMouse, y: 10, z: 3 }} target={{ x: 12 }} />
+        
+        <!-- ... -->
+        <Extra.GLTF url="../src/assets/my-avatar.glb" position={{x: 0, y:-0.75, z: 0}} castShadow />
+        <Threlte.Mesh
+        position={{ y : -0.75}}
+        geometry={new THREE.CircleBufferGeometry(.6, 32)}
+        rotation={{ x: -90 * (Math.PI / 180) }}
+        material={new THREE.MeshStandardMaterial({color: 'white'})}
+        receiveShadow
+        />
+        <!-- ... -->
+      </Threlte.Canvas>
+      <!-- <img src={myAva} alt="my-photo" class="block w-36 md:w-96 "/> -->
     </div>
     <div>
       <p class="lg:text-6xl text-xl font-bold text-white leading-tight">
         Hi there!
         <br />
-        <span class="md:text-6xl text-4xl font-charis font-semibold tracking-tight font-charis text-white">
+        <span class="md:text-6xl text-4xl font-charis font-semibold tracking-tight text-white">
           I am Reza Mahendra Surin.
         </span>
       </p>

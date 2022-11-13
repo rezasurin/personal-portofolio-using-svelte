@@ -20,8 +20,12 @@
     "vite": "^2.9.9"
   },
   "dependencies": {
+    "@threlte/core": "^4.3.3",
+    "@threlte/extras": "^4.5.1",
     "daisyui": "^2.15.2",
+    "svelte-cubed": "^0.2.1",
     "svelte-motion": "^0.11.2",
-    "svelte-scrollto": "^0.2.0"
+    "svelte-scrollto": "^0.2.0",
+    "three": "^0.146.0"
   }
 }
