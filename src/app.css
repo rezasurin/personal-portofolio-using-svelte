@@ -4,9 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+:root {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
   scroll-behavior: smooth;
-  
 }
 
 

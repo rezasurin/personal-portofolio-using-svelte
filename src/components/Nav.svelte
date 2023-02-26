@@ -72,13 +72,13 @@
 >
   <div class="hidden md:flex items-center justify-center z-10 ">
     <div
-      class="space-x-4 bg-transparent fixed flex justify-center items-center p-4  mt-12 glass-effect md:block"
+      class="space-x-4 bg-transprent fixed flex justify-center items-center p-4  mt-12 glass-effect md:block"
     >
       <ul class="flex flex-row mt-4">
         {#each menus as menu, i}
           <li>
             <a
-              id={menu.id}
+              id={i}
               href="#{menu.id}"
               class="block {menu.id} pl-3 text-lg {current == menu.id
                 ? 'font-bold'

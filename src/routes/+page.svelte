@@ -19,6 +19,7 @@
   import * as Extra from '@threlte/extras'
 
   import NavBar from '../components/Nav.svelte';
+  import { portoDetail, portoState } from '../stores.js';
 
 
   let meshAva;
@@ -63,6 +64,40 @@
     }
   ]
 
+  export async function load({ page, fetch }) {
+    const slug = page.params.project;
+    let post;
+    const url = `../data/portofolio.json`
+    const resp = await fetch(url) /* added this line */
+    post = await resp.json() /* added this line */
+    portoState.setPortoFolios(post)
+  }
+  // console.log(porto, "< CHECK POST")
+
+onMount(async () => {
+  const url = `../data/portofolio.json`
+  let post;
+    const resp = await fetch(url) /* added this line */
+    post = await resp.json() /* added this line */
+    console.log(post, "< CHECK POST")
+})
+
+async function getPortofolio() {
+  const url = `../data/portofolio.json`
+  let porto;
+    const resp = await fetch(url) /* added this line */
+    porto = await resp.json() /* added this line */
+    // console.log(porto, "< CHECK POST")
+    
+    // portoState.setPortoFolios(porto)
+  return porto
+}
+
+// console.log(portoState.subscribe(()))
+portoState.subscribe(value => {
+  // console.log(value, "<< PORTOFOLIOS VALUE")
+})
+
 
 
   const handleClickImage = (event, data) => {
@@ -96,6 +131,9 @@
 </svelte:head>
 
 <svelte:window  bind:outerWidth bind:scrollY={scrollY}/>
+
+
+
 
 
 <NavBar />
@@ -197,12 +235,34 @@
           Several projects that I've develop.
         </p>
       </div>
+
+
       <div class="flex mt-4 flex-wrap justify-center">
-        {#each dataPorto as data }
+
+        {#await getPortofolio()}
+        <p>Loading...</p>
+        {:then portofolios}
+
+        {#each portofolios as porto }
+        <CardImage title={porto.title}>
+          <img src={porto.coverUrl} alt="porto-img" id="{porto.title}" on:click|preventDefault={(e) => {}} class=" {porto.isMobile ? 'w-12 hover:w-32 ' : 'w-40 hover:scale-150 '}  hover:abs hover:grayscale-0 hover:animate-none grayscale ease-in-out duration-150 animate-pulse"/>
+          
+          <div class="max-w-xs flex flex-col gap-2 px-4 justify-center items-center ">
+            <p class="text-base tracking-wider m-0 mt-2 text-center">{porto.title}</p>
+            <a href="/portofolio/{porto.title}" on:click={() => portoDetail.update((prevState) => porto)} class="text-sm mb- cursor-pointer underline-offset-1  underline ">See details</a>
+          </div>
+        </CardImage>
+        {/each}
+
+        <!-- <p>Showing {portofolios.length} posts.</p> -->
+        {:catch error}
+          <p>{error.message}</p>
+        {/await}
+        <!-- {#each dataPorto as data }
         <CardImage title={data.title}>
           <img src={data.src} alt="my-photo" id="porto-image" on:click|preventDefault={(e) => handleClickImage(e, data.link)} class=" {data.isMobile ? 'w-12 hover:w-32 ' : 'w-40 hover:w-72 '} hover:absolute hover:grayscale-0 hover:animate-none grayscale ease-in-out duration-150 animate-pulse"/>
         </CardImage>
-        {/each}
+        {/each} -->
         <!-- <div id="alert-content" class="relative p-12 hidden">
           <p id="alert-text">Warning text</p>
         </div> -->

@@ -1,10 +1,20 @@
+<script>
+  import { portoDetail } from "../../../stores";
 
+  let porto
+
+  portoDetail.subscribe(value => {
+    porto = value
+  })
+
+  console.log(porto, "<< CEK PORTO DETAIL")
+</script>
 
 <!-- <div> -->
   
-  <div class="w-full p-4 rounded-lg bg-white h-screen">
-    <iframe src="https://notioniframe.com/notion/1rbj4mgm03d"
-    style="width: 100%; height: 100%; border: 0; padding: 0"></iframe>
+  <div class="w-4/6 p- rounded-lg h-auto bg-white h-screen">
+    <iframe src="{porto?.notionUrl}"
+    style="width: 100%; height: 100%; border: 0; padding: 0" class="bg-white rounded-lg"></iframe>
 
   </div>
 <!-- </div> -->

@@ -1,7 +1,21 @@
 [
   {
     "title": "Web3",
-    "coverUrl": "",
+    "coverUrl": "https://firebasestorage.googleapis.com/v0/b/surin-porto.appspot.com/o/portofolio%2Fweb3%2Fpro-web3.png?alt=media&token=ef543ec1-b928-4178-9729-16980cdf0662",
+    "images": [
+      {
+        "title": "page 1",
+        "imgUrl": ""
+      }
+    ],
+    "desc": "",
+    "notionUrl": "https://notioniframe.com/notion/8qh77tfpfpj",
+    "techStack": [],
+    "finishDate": ""
+  },
+  {
+    "title": "Learning Management System (LMS)",
+    "coverUrl": "https://firebasestorage.googleapis.com/v0/b/surin-porto.appspot.com/o/portofolio%2Flms%2Fpro-lms.png?alt=media&token=f1aa4ea9-21a4-4769-8017-11c39efb6a60",
     "images": [
       {
         "title": "page 1",
@@ -14,43 +28,47 @@
     "finishDate": ""
   },
   {
-    "title": "Learning Management System (LMS)",
-    "coverUrl": "",
-    "images": [
-      {
-        "title": "page 1",
-        "imgUrl": ""
-      }
-    ],
-    "desc": ""
-  },
-  {
     "title": "Project Scheduling System",
-    "coverUrl": "",
+    "coverUrl": "https://firebasestorage.googleapis.com/v0/b/surin-porto.appspot.com/o/portofolio%2Fproject-scheduling%2FSignin.png?alt=media&token=82e190a6-146b-4082-97a5-4bdaff3904f5",
+    "notionUrl": "https://notioniframe.com/notion/11io8pchkzb",
     "images": [
       {
         "title": "page 1",
         "imgUrl": ""
       }
     ],
-    "desc": ""
+    "desc": "",
+    "techStack": [],
+    "finishDate": ""
   },
   {
     "title": "Simple Unsplash Gallery",
     "src": "portoGallery",
     "link": "https://unusual-gallery.web.app/",
-    "isMobile": false
+    "notionUrl": "https://notioniframe.com/notion/jeb4ms7uanf",
+    "coverUrl": "https://firebasestorage.googleapis.com/v0/b/surin-porto.appspot.com/o/portofolio%2Fsimple-gallery%2Fpro-gallery.png?alt=media&token=825bf719-2055-4262-a390-3bbb999f3f23",
+    "isMobile": false,
+    "techStack": [],
+    "finishDate": ""
   },
   {
     "title": "Company Event",
     "src": "portoEvent",
     "link": null,
-    "isMobile": true
+    "notionUrl": "https://notioniframe.com/notion/q7sq3detjio",
+    "isMobile": true,
+    "coverUrl": "https://firebasestorage.googleapis.com/v0/b/surin-porto.appspot.com/o/portofolio%2Fcompany-event%2Fcompany-event.png?alt=media&token=d29adc4c-5218-42e7-9a61-258c63d4e210",
+    "techStack": [],
+    "finishDate": ""
   },
   {
     "title": "[UI DESIGN] Food Ordering and Reservation ",
     "src": "portoFood",
+    "notionUrl": "https://notioniframe.com/notion/1v114oiiz6k",
+    "coverUrl": "https://firebasestorage.googleapis.com/v0/b/surin-porto.appspot.com/o/portofolio%2Ffood-ordering%2Fpro-food.png?alt=media&token=0a9916e2-8563-4239-8248-f164ff0107d3",
     "link": null,
-    "isMobile": true
+    "isMobile": true,
+    "techStack": [],
+    "finishDate": ""
   }
 ]
