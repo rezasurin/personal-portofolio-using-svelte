@@ -31,41 +31,37 @@
 
   let y;
   $: outerHeight = 0;
-  $: current = ''  ;
+  $: current = "";
 
   function checkRoute(sections) {
     window.onscroll = () => {
       sections.forEach((section) => {
-
         const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.scrollHeight
-        const viewportTop = window.scrollY
-        const viewportBottom = viewportTop + window.innerHeight
+        const sectionBottom = sectionTop + section.scrollHeight;
+        const viewportTop = window.scrollY;
+        const viewportBottom = viewportTop + window.innerHeight;
 
         if (sectionBottom > viewportTop && sectionTop < viewportBottom) {
-          current = section.getAttribute('id')
+          current = section.getAttribute("id");
         }
       });
-          
-          if (window.scrollY > y) {
-            showNavBar = true;
-          } else {
-            showNavBar = false;
-          }
-        };
+
+      if (window.scrollY > y) {
+        showNavBar = true;
+      } else {
+        showNavBar = false;
       }
-      
-      onMount(() => {
-        
-        const sections = document.querySelectorAll("section");
-        checkRoute(sections)
-      });
-      
-      onDestroy(() => {
-    window.onscroll = () => {};
+    };
+  }
+
+  onMount(async () => {
+    const sections = document.querySelectorAll("section");
+    checkRoute(sections);
   });
 
-
+  onDestroy(() => {
+    // window.onscroll = () => {};
+  });
 </script>
 
 <svelte:window bind:outerHeight bind:scrollY={y} />
@@ -82,9 +78,12 @@
         {#each menus as menu, i}
           <li>
             <a
-              id="{i}"
+              id={menu.id}
               href="#{menu.id}"
-              class="block {menu.id} pl-3 text-lg {current == menu.id ? 'font-bold' : ''} hover:text-xl hover:font-bold  ease-in-out duration-200  text-white">{menu.page}</a
+              class="block {menu.id} pl-3 text-lg {current == menu.id
+                ? 'font-bold'
+                : ''} hover:text-xl hover:font-bold  ease-in-out duration-200  text-white"
+              >{menu.page}</a
             >
           </li>
         {/each}

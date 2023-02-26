@@ -2,12 +2,14 @@
   export let title;
 </script>
 
-<div class="card-container w-48 h-48  flex flex-col justify-center items-center m-2">
+<a class="card-container w-48 h-48 cursor-pointer flex flex-col justify-center items-center m-2"
+href={`/portofolio/${title}`}
+>
   <slot></slot>
   <div class="max-w-xs flex flex-col px-4 justify-center items-center">
     <p class="text-sm tracking-wider m-0 mt-2 text-center">{title}</p>
   </div>
-</div>
+</a>
 
 <style>
   .card-container {
